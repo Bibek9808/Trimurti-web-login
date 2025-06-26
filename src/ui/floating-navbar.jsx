@@ -39,6 +39,16 @@ export const FloatingNav = ({ navItems, className }) => {
           <a
             key={`link-${idx}`}
             href={navItem.link}
+            onClick={(e) => {
+              if (navItem.link.startsWith("#")) {
+                e.preventDefault();
+                const targetId = navItem.link.slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                  target.scrollIntoView({ behavior: "smooth" });
+                }
+              }
+            }}
             className={cn(
               "relative flex items-center space-x-1 text-sm font-medium text-neutral-600 dark:text-neutral-200",
               "transition-all hover:text-blue-600 dark:hover:text-blue-400"
